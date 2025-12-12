@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunbeam Registration Form</title>
+
+    <style>
+        h2 {
+            text-align: center;
+            color: black;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            align-items: stretch; 
+        }
+
+        .left, .right {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #aaa;
+        }
+
+        .right label {
+            display: inline-block;
+            width: 120px; 
+            margin-bottom: 10px;
+        }
+
+        .right input, 
+        .right select {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 15px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="image.png" alt="Sunbeam Logo" 
+         style="width: 50%; height: auto; display:block; margin:20px auto;">
+
+    <h2>Sunbeam Registration Form</h2>
+
+    <div class="container">
+
+        
+        <div class="left">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Az5Bt3zUtiM?si=maQP2nYG9Mi-V66U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        
+        <div class="right">
+            <label>Name:</label>
+            <input type="text"><br>
+
+            <label>Birth Date:</label>
+            <input type="date"><br>
+
+            <label>Email:</label>
+            <input type="email"><br>
+
+            <label>Password:</label>
+            <input type="password"><br>
+
+            <label>Address:</label>
+            <input type="text" style="padding: 10px; width:200px;"><br>
+
+            <label>Gender:</label>
+            <input type="radio" name="g"> Male
+            <input type="radio" name="g"> Female<br><br>
+
+            <label>Course:</label>
+            <select>
+                <option>Select course</option>
+                <option>Java</option>
+                <option>C++</option>
+                <option>Python</option>
+            </select><br>
+
+            <label>Upload Photo:</label>
+            <input type="file"><br>
+
+            <label>Skill Set:</label>
+            <input type="checkbox"> Java
+            <input type="checkbox"> CPP
+            <input type="checkbox"> OS <br><br>
+
+            <button>Register</button>
+            <button>Clear</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
