@@ -8,7 +8,7 @@
 <body>
     <style>
         body{
-            margin:0;
+            margin:10px;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -16,30 +16,29 @@
             background-color:#ccc;
             font-family: 'Courier New', Courier, monospace;
         }
-        .login-container{
+        .register-container{
             background: #ffffff;
             padding: 30px;
-            width: 300px;
+            width: 400px;
             border-radius: 15px;
             box-shadow: 5px 5px ;
         }
-        .login-container h2{
+        .register-container h2{
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 0px;
+            margin-top: 0px;
         }
         label{
-            font-size: large;
+            font-size: 14px;
             
         }
         input{
            
             width: 100%;
             padding: 7px;
-            margin-top: 6px;
-            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 12px;
         }
         input:focus{
             outline: none;
@@ -65,45 +64,60 @@
             visibility: hidden;
         }
     </style>
-    <div class="login-container">
-        <h2>Login</h2>
+    <div class="register-container">
+        <h2>Register</h2>
         <form onsubmit="submitForm(); return false;">
-<<<<<<< HEAD
-            <label for = "email" >Email Address</label><br><br>
-            <input type="email" id="email" placeholder="Enter email" required>
-=======
+            <label for = "name">Name</label><br><br>
+            <input type="text" id="name" placeholder="Enter name">
+            <p id="nameError" class ="error-message">Please enter your name</p>
+
             <label for = "email">Email Address</label><br><br>
             <input type="text" id="email" placeholder="Enter email">
->>>>>>> 12fba4811eae555d18eb80f59580239ecf1024e0
-            <p id="emailError" class ="error-message">Please enter a valid email address</p><br>
+            <p id="emailError" class ="error-message">Please enter a valid email address</p>
+
             <label for ="password">Password</label><br><br>
             <input type="text" id="password" placeholder="Password">
-            <p id="passwordError" class ="error-message">Password must be at least 6 characters long</p><br><br>
-<<<<<<< HEAD
-            <button style="background-color: aqua;">Login</button><br><br>
-            <a href="Register.html">Register</a>
-=======
-            <button style="background-color: aqua;">Login</button>
->>>>>>> 12fba4811eae555d18eb80f59580239ecf1024e0
+            <p id="passwordError" class ="error-message">Password must be at least 6 characters long</p>
+
+            <label for ="phoneno">Phone No</label><br><br>
+            <input type="text" id="phoneno" placeholder="Enter phone number">
+            <p id="phonenoError" class ="error-message">Please enter valid phone number</p><br><br>
+ 
+            <button style="background-color: aqua;">Register</button>
             
         </form>
     </div>
         <script>
+        const nameRegx=/^[a-zA-Z]+$/;
         const emailRegx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const passwordRegx = /^.{6,}$/; 
+        const phonenoRegx=/^\d{10}$/;
 
         function submitForm() {
+            const name=document.getElementById("name");
+            const nameError=document.getElementById("nameError");
+
             const email = document.getElementById("email");
             const emailError = document.getElementById("emailError");
 
             const password = document.getElementById("password");
             const passwordError = document.getElementById("passwordError");
 
+            const phoneno =document.getElementById("phoneno");
+            const phonenoError=document.getElementById("phonenoError");
+
+            
+            nameError.style.visibility = "hidden";
             emailError.style.visibility = "hidden";
             passwordError.style.visibility = "hidden";
+            phonenoError.style.visibility = "hidden";
 
             let valid = true;
 
+            if(!nameRegx.test(name.value)){
+                nameError.style.visibility="visible";
+                valid="false";
+            }
             if (!emailRegx.test(email.value)) {
                 emailError.style.visibility = "visible";
                 valid = false;
@@ -114,12 +128,13 @@
                 valid = false;
             }
 
+            if(!phonenoRegx.test(phoneno.value)){
+                phonenoError.style.visibility="visible";
+                vaild=false;
+            }
+
             if (valid) {
-<<<<<<< HEAD
-                alert("Login successful");
-=======
-                alert("Form submitted");
->>>>>>> 12fba4811eae555d18eb80f59580239ecf1024e0
+                alert("Registeration successful");
             }
         }
         </script>
