@@ -16,7 +16,6 @@ app.use((req, res, next) => {
 })
 app.use('/user', userRouter)
 
-
 app.listen(PORT,"localhost",()=>{
     console.log("Server started at port",PORT)
 })

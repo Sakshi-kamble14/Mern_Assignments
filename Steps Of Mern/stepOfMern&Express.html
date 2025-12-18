@@ -1,0 +1,119 @@
+<!-- Step 1 -->
+Go to terminal & hit that command -->
+npm init
+
+<!-- Step 2 -->
+Next command to hit is -->
+npm install express
+
+<!-- Step 3 -->
+Create server.js page -->
+    <!-- step a -->
+        import the express into express variable
+        <!-- step b -->
+         Store the express() into the const app
+         <!-- like const app=express() -->
+            <!-- step c -->
+             Write listen function for connecting server with port
+             <!-- like app.listen(port_number,'localhost',()={
+                console.log('Server is running on port number')
+             }) -->
+        
+<!-- Step 4 -->
+Create result.js file into the utils folder and write createresult function
+to fetch the result like
+<!-- function createresult(error,data){
+    const result={}
+
+    if(data){
+        result.status='success'
+        result.data=data
+    }
+    else{
+        result.status='error'
+        result.error=error
+    }
+    return result
+}
+
+module.exports={createresult} -->
+
+<!-- Step 5 -->
+Create pool.js file into the db folder to make connection 
+between the json & database like
+    <!-- step i -->
+     first install mysql2 version
+        npm install mysql2
+    <!-- step ii -->
+     import the mysql2 variable
+        const mysql2=require('mysql2')
+        <!-- step iii -->
+         <!-- Create pool object like
+         const pool=mysql2.createPool({
+            host:'localhost',
+            user:'root',
+            password:'manager',
+            database:'internship_db'
+         }) -->
+         <!-- step iv -->
+          Export this object (pool) like 
+          module.exports=pool
+
+<!-- Step 6 -->
+Create whichever route file(student.js) into the routes folder
+         <!-- step I -->
+            import express into express variable like
+            const express=require('express')
+            <!-- step II -->
+             Create lighter version of express function also store result function in result like
+             const router = express.Router() -->i
+             const result=require('../utils/result')
+             Also store pool.js into the pool variable like
+             const pool=require('../db/pool')
+             <!-- step III -->
+                 Use the necessary http method as per requirement
+                 HTTP Methods like
+                 <!-- GET
+                 POST
+                 PUT 
+                 DELETE -->
+                 For example 
+                    <!-- router.get('/path',(request,response)=>{
+                        <!-- Write a SQL query -->
+                        <!-- Exceute the query -->
+                        pool.query((sql,[values],(error,data)=>{
+                            <!-- Send the response to the postman like -->
+                            response.send(result.createresult(error,data))
+                        })')
+                    }) -->
+                    <!-- step IV -->
+                     exports the router like
+                     module.exports=router
+
+
+<!-- Step 7 -->
+Finally go to the server.js file create necessary routers like
+const studentRouter=require('./routes/student')
+
+Use that router like 
+app.use('/student',studentRouter)
+
+// Create middileware for storing incoming request like
+app.use(express.json());
+
+<!-- Step 8 -->
+Run it on postman
+
+<!-- Our project is ready Yeahh!!!!!!!!!! -->
+ <!-- Shortcut trick -->
+
+<!-- | Word       | Meaning                                     | Step   |
+| ---------- | ------------------------------------------- | ------ |
+| **I**      | **Init project** → `npm init`               | Step 1 |
+| **Eat**    | **Express install** → `npm install express` | Step 2 |
+| **Cold**   | **Create server.js** (app, listen)          | Step 3 |
+| **Rice**   | **Result function** (utils/result.js)       | Step 4 |
+| **During** | **Database pool** (mysql2, pool.js)         | Step 5 |
+| **Stormy** | **Student route** (routes/student.js)       | Step 6 |
+| **Rainy**  | **Register router + middleware**            | Step 7 |
+| **Nights** | **Postman test**                            | Step 8 | -->
