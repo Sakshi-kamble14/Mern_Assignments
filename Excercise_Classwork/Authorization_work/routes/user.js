@@ -5,7 +5,7 @@ const jwt=require('jsonwebtoken')
 const pool=require('../db/pool')
 const result=require('../utils/result')
 const config=require('../utils/config')
-
+const {checkAuthorization}=require('../utils/auth')
 const router=express.Router()
 
 router.post('/signup',(request,response)=>{
@@ -17,15 +17,16 @@ router.post('/signup',(request,response)=>{
     })
 });
 
+
 router.post('/signin', (request, response) => {
     const { email, password } = request.body
     const hashedPassword = cryptojs.SHA256(password).toString()
     const sql = `SELECT * FROM users WHERE email = ? AND password = ?`
     pool.query(sql, [email, hashedPassword], (error, data) => {
         if (error)
-            response.send(result.createResult(error))
+            response.send(result.creatResult(error))
         else if (data.length == 0)
-            response.send(result.createResult("Invalid email or password"))
+            response.send(result.creatResult("Invalid email or password"))
         else {
             const user = data[0]
             // create the JWT token
@@ -79,6 +80,13 @@ router.delete('/',(request,response)=>{
     const sql=`Delete from users where uid=?`
     pool.query(sql,[uid],(error,data)=>{
         response.send(result.creatResult(error,data))
+    })
+})
+// get all students(admin)
+router.get('/all-students',checkAuthorization,(req,res)=>{
+    const sql=`select * from students`
+    pool.query(sql,(error,data)=>{
+        res.send(result.creatResult(error,data))
     })
 })
 module.exports=router

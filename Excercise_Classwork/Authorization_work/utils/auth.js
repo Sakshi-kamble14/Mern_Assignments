@@ -27,4 +27,14 @@ function authUser(request,response,next){
     }
 }
 
-module.exports=authUser
+function checkAuthorization(req, res, next) {
+  const role = req.headers.role;
+  console.log("current user role: ", role);
+
+  if (role === "admin") {
+    return next();
+  }
+  return res.send(result.creatResult('denied access'))
+}
+
+module.exports = { authUser, checkAuthorization };
